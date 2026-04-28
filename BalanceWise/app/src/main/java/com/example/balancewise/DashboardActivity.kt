@@ -39,6 +39,9 @@ class DashboardActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnCategoryTotals).setOnClickListener {
             startActivity(Intent(this, CategoryTotalsActivity::class.java))
         }
+        findViewById<Button>(R.id.btnReports).setOnClickListener {
+            startActivity(Intent(this, ReportActivity::class.java))
+        }
     }
 
     override fun onResume() {

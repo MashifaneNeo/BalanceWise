@@ -73,5 +73,12 @@
             android:text="Category Totals"
             android:layout_marginTop="12dp" />
 
+        <Button
+            android:id="@+id/btnReports"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Generate Report"
+            android:layout_marginTop="8dp" />
+
     </LinearLayout>
 </ScrollView>
