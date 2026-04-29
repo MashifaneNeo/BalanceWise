@@ -26,7 +26,6 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <!-- OTHER ACTIVITIES (NO LAUNCHER HERE) -->
         <activity android:name=".ReportActivity" />
         <activity android:name=".CategoryTotalsActivity" />
         <activity android:name=".ExpenseListActivity" />
@@ -36,7 +35,6 @@
         <activity android:name=".DashboardActivity" />
 
 
-        <!-- ONLY LAUNCHER ACTIVITY -->
         <activity
             android:name=".LoginActivity"
             android:exported="true"
