@@ -14,6 +14,14 @@
         style="@style/Heading1"
         android:layout_marginBottom="16dp" />
 
+    <SearchView
+        android:id="@+id/searchExpenses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:queryHint="Search expenses"
+        android:iconifiedByDefault="false" />
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +46,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Start"
+                    android:text="Start Date"
                     style="@style/SecondaryButton"
                     android:layout_marginEnd="8dp" />
 
@@ -47,9 +55,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="End"
+                    android:text="End Date"
                     style="@style/SecondaryButton"
                     android:layout_marginStart="8dp" />
+
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -82,6 +91,7 @@
                 android:text="R 0.00"
                 style="@style/Heading3"
                 android:textColor="@color/primary" />
+
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

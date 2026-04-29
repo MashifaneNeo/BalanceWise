@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.SearchView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -11,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.balancewise.adapter.ExpenseAdapter
 import com.example.balancewise.database.AppDatabase
-import com.example.balancewise.database.Expense
 import kotlinx.coroutines.launch
 import java.util.Calendar
 
@@ -22,6 +22,10 @@ class ExpenseListActivity : AppCompatActivity() {
     private lateinit var tvTotal: TextView
     private lateinit var btnStartDate: Button
     private lateinit var btnEndDate: Button
+    private lateinit var searchView: SearchView
+    private lateinit var adapter: ExpenseAdapter
+
+    private var currentQuery: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +35,29 @@ class ExpenseListActivity : AppCompatActivity() {
         tvTotal = findViewById(R.id.tvExpenseListTotal)
         btnStartDate = findViewById(R.id.btnStartDate)
         btnEndDate = findViewById(R.id.btnEndDate)
-        rvExpenses.layoutManager = LinearLayoutManager(this)
+        searchView = findViewById(R.id.searchExpenses)
 
-        btnStartDate.setOnClickListener { pickDate(btnStartDate) { filterExpenses() } }
-        btnEndDate.setOnClickListener { pickDate(btnEndDate) { filterExpenses() } }
+        adapter = ExpenseAdapter(emptyList())
+        rvExpenses.layoutManager = LinearLayoutManager(this)
+        rvExpenses.adapter = adapter
+
+        btnStartDate.setOnClickListener { pickDate(btnStartDate) { loadExpenses() } }
+        btnEndDate.setOnClickListener { pickDate(btnEndDate) { loadExpenses() } }
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                currentQuery = query?.trim() ?: ""
+                loadExpenses()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                currentQuery = newText?.trim() ?: ""
+                loadExpenses()
+                return true
+            }
+        })
+
         findViewById<Button>(R.id.btnOpenTotals).setOnClickListener {
             startActivity(Intent(this, CategoryTotalsActivity::class.java))
         }
@@ -45,25 +68,26 @@ class ExpenseListActivity : AppCompatActivity() {
         loadExpenses()
     }
 
-    private fun loadExpenses(startDate: String? = null, endDate: String? = null) {
+    private fun loadExpenses() {
         val userId = SessionManager.getUserId(this)
+        val start = btnStartDate.text.toString()
+        val end = btnEndDate.text.toString()
+        val hasDate = start != "Start Date" && end != "End Date"
+        val hasQuery = currentQuery.isNotEmpty()
+
         lifecycleScope.launch {
-            val expenses = if (startDate != null && endDate != null)
-                db.expenseDao().getExpensesByDateRange(userId, startDate, endDate)
-            else
-                db.expenseDao().getExpensesForUser(userId)
+            val expenses = when {
+                hasQuery && hasDate -> db.expenseDao().searchExpensesByDate(userId, currentQuery, start, end)
+                hasQuery -> db.expenseDao().searchExpenses(userId, currentQuery)
+                hasDate -> db.expenseDao().getExpensesByDateRange(userId, start, end)
+                else -> db.expenseDao().getExpensesForUser(userId)
+            }
 
             runOnUiThread {
-                rvExpenses.adapter = ExpenseAdapter(expenses)
+                adapter.updateData(expenses)
                 tvTotal.text = "Total: R %.2f".format(expenses.sumOf { it.amount })
             }
         }
-    }
-
-    private fun filterExpenses() {
-        val start = btnStartDate.text.toString()
-        val end = btnEndDate.text.toString()
-        if (start != "Start Date" && end != "End Date") loadExpenses(start, end)
     }
 
     private fun pickDate(target: Button, onDateSet: () -> Unit) {

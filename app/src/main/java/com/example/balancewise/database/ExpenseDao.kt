@@ -6,6 +6,7 @@ import androidx.room.Query
 
 @Dao
 interface ExpenseDao {
+
     @Insert
     suspend fun insertExpense(expense: Expense)
 
@@ -20,6 +21,30 @@ interface ExpenseDao {
     """)
     suspend fun getExpensesByDateRange(
         userId: Int,
+        startDate: String,
+        endDate: String
+    ): List<Expense>
+
+    @Query("""
+        SELECT * FROM expenses 
+        WHERE userId = :userId
+        AND LOWER(description) LIKE '%' || LOWER(:query) || '%'
+    """)
+    suspend fun searchExpenses(
+        userId: Int,
+        query: String
+    ): List<Expense>
+
+    @Query("""
+        SELECT * FROM expenses 
+        WHERE userId = :userId
+        AND LOWER(description) LIKE '%' || LOWER(:query) || '%'
+        AND date >= :startDate 
+        AND date <= :endDate
+    """)
+    suspend fun searchExpensesByDate(
+        userId: Int,
+        query: String,
         startDate: String,
         endDate: String
     ): List<Expense>
