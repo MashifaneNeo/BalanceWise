@@ -34,6 +34,13 @@
         android:textStyle="bold"
         android:layout_marginTop="12dp" />
 
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search expenses"
+        android:padding="12dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvExpenses"
         android:layout_width="match_parent"
