@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
@@ -7,4 +8,14 @@
         <item name="colorAccent">@android:color/holo_green_dark</item>
     </style>
 
+=======
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Balance_Wise" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.Balance_Wise" parent="Base.Theme.Balance_Wise" />
+>>>>>>> 1268648ee3a6dcf37bdae6bcdceb0d2a642ef3bb
 </resources>

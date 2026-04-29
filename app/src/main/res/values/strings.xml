@@ -1,3 +1,7 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">BalanceWise</string>
+=======
+    <string name="app_name">Balance_Wise</string>
+>>>>>>> 1268648ee3a6dcf37bdae6bcdceb0d2a642ef3bb
 </resources>
