@@ -1,47 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="12dp"
-    android:background="#F4F4F4"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="1dp">
 
-    <TextView
-        android:id="@+id/tvItemCategory"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="Category" />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tvItemAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="R 0.00"
-        android:textColor="#00695C"
-        android:layout_marginTop="4dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
 
-    <TextView
-        android:id="@+id/tvItemDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Description"
-        android:layout_marginTop="4dp" />
+            <TextView
+                android:id="@+id/tvItemCategory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Category"
+                style="@style/BodyTextBold"
+                android:textColor="@color/primary" />
 
-    <TextView
-        android:id="@+id/tvItemDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="01/01/2026"
-        android:layout_marginTop="4dp" />
+            <TextView
+                android:id="@+id/tvItemAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R 0.00"
+                style="@style/BodyTextBold"
+                android:textColor="@color/success" />
+        </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imgItemReceipt"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="centerCrop"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/tvItemDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            style="@style/BodyText"
+            android:layout_marginBottom="4dp" />
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvItemDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="01/01/2026"
+                style="@style/Caption" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Caption"
+                    android:layout_marginEnd="4dp" />
+
+                <TextView
+                    android:id="@+id/tvItemTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:00"
+                    style="@style/Caption" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgItemReceipt"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:cardCornerRadius="8dp" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

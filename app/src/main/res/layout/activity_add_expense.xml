@@ -1,108 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add Expense"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            style="@style/Heading1"
+            android:layout_marginBottom="16dp" />
 
-        <EditText
-            android:id="@+id/etAmount"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Amount"
-            android:inputType="numberDecimal"
-            android:layout_marginTop="16dp" />
+            android:layout_marginBottom="12dp"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
-        <EditText
-            android:id="@+id/etDescription"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Amount"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description"
-            android:layout_marginTop="12dp" />
+            android:layout_marginBottom="12dp"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description"
+                android:inputType="textCapSentences" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date and Time"
+            style="@style/Heading3"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp" />
 
         <Button
             android:id="@+id/btnDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Select Date"
-            android:layout_marginTop="12dp" />
+            style="@style/SecondaryButton"
+            android:gravity="center|start"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp" />
 
-        <Button
-            android:id="@+id/btnStartTime"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Start Time"
-            android:layout_marginTop="12dp" />
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
 
-        <Button
-            android:id="@+id/btnEndTime"
-            android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnStartTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Start Time"
+                style="@style/SecondaryButton"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btnEndTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="End Time"
+                style="@style/SecondaryButton"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="End Time"
-            android:layout_marginTop="12dp" />
+            android:text="Category"
+            style="@style/Heading3"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp" />
 
         <Spinner
             android:id="@+id/spinnerCategory"
             android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/spinner_background"
+            android:padding="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp" />
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Currency"
+                    style="@style/Caption"
+                    android:layout_marginBottom="4dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerCurrency"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/spinner_background"
+                    android:padding="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recurring"
+                    style="@style/Caption"
+                    android:layout_marginBottom="4dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerRecurring"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/spinner_background"
+                    android:padding="12dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Receipt (Optional)"
+            style="@style/Heading3"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp" />
 
         <Button
             android:id="@+id/btnPhoto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add Receipt Photo"
-            android:layout_marginTop="12dp" />
+            style="@style/SecondaryButton"
+            android:layout_marginBottom="12dp" />
 
         <ImageView
             android:id="@+id/imgReceiptPreview"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:scaleType="centerCrop"
-            android:layout_marginTop="12dp"
-            android:src="@android:color/darker_gray" />
-
-        <CheckBox
-            android:id="@+id/cbRecurring"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recurring Expense"
-            android:layout_marginTop="12dp" />
-
-
-
-        <!-- Currency -->
-        <Spinner
-            android:id="@+id/spinnerCurrency"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp" />
-
-        <!-- Recurring -->
-        <Spinner
-            android:id="@+id/spinnerRecurring"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp" />
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"
+            android:background="@color/surface_variant" />
 
         <Button
             android:id="@+id/btnSaveExpense"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:text="Save Expense"
-            android:layout_marginTop="16dp" />
+            style="@style/PrimaryButton"
+            android:layout_marginTop="8dp" />
 
     </LinearLayout>
 </ScrollView>
-

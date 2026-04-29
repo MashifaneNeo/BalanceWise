@@ -1,62 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp">
+    android:background="@color/background">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Monthly Spending Goals"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Minimum Goal"
-        android:layout_marginTop="24dp" />
-
-    <TextView
-        android:id="@+id/tvMinValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="R 500"
-        android:textStyle="bold"
-        android:layout_marginTop="8dp" />
-
-    <SeekBar
-        android:id="@+id/seekMin"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="10000" />
+        android:orientation="vertical"
+        android:padding="24dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Maximum Goal"
-        android:layout_marginTop="24dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monthly Goals"
+            style="@style/Heading1"
+            android:layout_marginBottom="24dp" />
 
-    <TextView
-        android:id="@+id/tvMaxValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="R 5000"
-        android:textStyle="bold"
-        android:layout_marginTop="8dp" />
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
 
-    <SeekBar
-        android:id="@+id/seekMax"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="20000" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-    <Button
-        android:id="@+id/btnSaveGoals"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save Goals"
-        android:layout_marginTop="32dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Minimum Goal"
+                    style="@style/Heading3"
+                    android:layout_marginBottom="8dp" />
 
-</LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Try to spend at least this amount"
+                    style="@style/Caption"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:id="@+id/tvMinValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="R 500"
+                    style="@style/Heading2"
+                    android:textColor="@color/primary"
+                    android:layout_marginBottom="16dp" />
+
+                <SeekBar
+                    android:id="@+id/seekMin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="10000"
+                    android:progress="500"
+                    android:progressTint="@color/primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Range: R 0 - R 10,000"
+                    style="@style/Caption"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Maximum Goal"
+                    style="@style/Heading3"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Don't exceed this amount"
+                    style="@style/Caption"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:id="@+id/tvMaxValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="R 5000"
+                    style="@style/Heading2"
+                    android:textColor="@color/warning"
+                    android:layout_marginBottom="16dp" />
+
+                <SeekBar
+                    android:id="@+id/seekMax"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="20000"
+                    android:progress="5000"
+                    android:progressTint="@color/warning" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Range: R 0 - R 20,000"
+                    style="@style/Caption"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <Button
+            android:id="@+id/btnSaveGoals"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Save Goals"
+            style="@style/PrimaryButton" />
+
+    </LinearLayout>
+</ScrollView>

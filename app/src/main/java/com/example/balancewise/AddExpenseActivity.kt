@@ -2,6 +2,7 @@ package com.example.balancewise
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.*
@@ -101,13 +102,19 @@ class AddExpenseActivity : AppCompatActivity() {
     }
 
     private fun setupImagePicker() {
-        val picker = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        val picker = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
             selectedPhotoUri = uri
-            if (uri != null) imgReceiptPreview.setImageURI(uri)
+            if (uri != null) {
+                contentResolver.takePersistableUriPermission(
+                    uri,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+                imgReceiptPreview.setImageURI(uri)
+            }
         }
 
         findViewById<Button>(R.id.btnPhoto).setOnClickListener {
-            picker.launch("image/*")
+            picker.launch(arrayOf("image/*"))
         }
     }
 

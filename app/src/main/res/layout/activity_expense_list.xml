@@ -1,50 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background"
     android:padding="16dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Expenses"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        style="@style/Heading1"
+        android:layout_marginBottom="16dp" />
 
-    <Button
-        android:id="@+id/btnStartDate"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start Date"
-        android:layout_marginTop="12dp" />
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="2dp">
 
-    <Button
-        android:id="@+id/btnEndDate"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btnStartDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Start"
+                    style="@style/SecondaryButton"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btnEndDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="End"
+                    style="@style/SecondaryButton"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="End Date"
-        android:layout_marginTop="8dp" />
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="@color/primary_light">
 
-    <TextView
-        android:id="@+id/tvExpenseListTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total: R 0.00"
-        android:textStyle="bold"
-        android:layout_marginTop="12dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Total Amount:"
+                style="@style/BodyTextBold" />
+
+            <TextView
+                android:id="@+id/tvExpenseListTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R 0.00"
+                style="@style/Heading3"
+                android:textColor="@color/primary" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvExpenses"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="12dp" />
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/btnOpenTotals"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View Category Totals" />
+        android:layout_height="56dp"
+        android:text="View Category Totals"
+        style="@style/PrimaryButton"
+        android:layout_marginTop="16dp" />
 
 </LinearLayout>
